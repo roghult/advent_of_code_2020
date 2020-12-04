@@ -13,8 +13,16 @@ test {
     useJUnitPlatform()
 }
 
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation("com.github.shiguruikai:combinatoricskt:1.6.0")
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter:5.5.2'
 }
