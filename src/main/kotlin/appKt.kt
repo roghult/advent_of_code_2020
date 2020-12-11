@@ -1,5 +1,4 @@
-import days.Day3
-import days.Day4
+import days.*
 import java.io.File
 
 interface Day {
@@ -20,10 +19,13 @@ fun readInputLines(fileName: String, dir: String = "src/main/resources/"): List<
 }
 
 fun main() {
-    val day = Day4()
+    val day = Day10()
     val input = readInputLines(day.puzzleInput)
-//    val input = readInputLines(day.puzzleTestInput)
+    val testInput = readInputLines(day.puzzleTestInput)
     println()
-    println(day.task1(input))
-    println(day.task2(input))
+    println("Task 1 test answer: ${day.task1(testInput)}")
+    println("Task 2 test answer: ${day.task2(testInput)}")
+    println()
+    println("Task 1 answer: ${day.task1(input)}")
+    println("Task 2 answer: ${day.task2(input)}")
 }
