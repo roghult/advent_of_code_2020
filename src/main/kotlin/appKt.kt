@@ -19,13 +19,13 @@ fun readInputLines(fileName: String, dir: String = "src/main/resources/"): List<
 }
 
 fun main() {
-    val day = Day10()
+    val day = Day12()
     val input = readInputLines(day.puzzleInput)
     val testInput = readInputLines(day.puzzleTestInput)
     println()
     println("Task 1 test answer: ${day.task1(testInput)}")
-    println("Task 2 test answer: ${day.task2(testInput)}")
-    println()
     println("Task 1 answer: ${day.task1(input)}")
+    println()
+    println("Task 2 test answer: ${day.task2(testInput)}")
     println("Task 2 answer: ${day.task2(input)}")
 }
