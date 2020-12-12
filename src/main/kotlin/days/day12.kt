@@ -2,6 +2,9 @@ package days
 
 import Day
 import kotlin.math.absoluteValue
+import kotlin.math.cos
+import kotlin.math.roundToInt
+import kotlin.math.sin
 
 enum class Direction(val value: Int) {
     NORTH(0),
@@ -43,7 +46,15 @@ class Day12 : Day {
     }
 
     override fun task2(input: List<String>): String {
-        return ""
+        val boat = BoatWithWaypoint()
+        input.forEach {
+            val actionStr = it[0]
+            val value = it.substring(1).toInt()
+            val action = Action.valueOf(actionStr.toString())
+            boat.move(action, value)
+        }
+        val answer = boat.manhattanFromBeginning()
+        return answer.toString()
     }
 }
 
@@ -73,5 +84,40 @@ private class Boat(
                 }
             }
         }
+    }
+}
+
+private class BoatWithWaypoint(
+        private var x: Int = 0,
+        private var y: Int = 0,
+        private var wpX: Int = 10,
+        private var wpY: Int = 1,
+) {
+    fun manhattanFromBeginning(): Int {
+        return x.absoluteValue + y.absoluteValue
+    }
+
+    fun move(action: Action, value: Int) {
+        when (action) {
+            Action.N -> wpY += value
+            Action.S -> wpY -= value
+            Action.E -> wpX += value
+            Action.W -> wpX -= value
+            Action.L -> rotate(value)
+            Action.R -> rotate(-value)
+            Action.F -> {
+                x += wpX * value
+                y += wpY * value
+            }
+        }
+    }
+
+    private fun rotate(degrees: Int) {
+        val radians = degrees * (Math.PI / 180)
+
+        val rotatedX = cos(radians) * (wpX) - sin(radians) * (wpY)
+        val rotatedY = sin(radians) * (wpX) + cos(radians) * (wpY)
+        wpX = rotatedX.roundToInt()
+        wpY = rotatedY.roundToInt()
     }
 }
