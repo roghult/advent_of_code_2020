@@ -19,7 +19,7 @@ fun readInputLines(fileName: String, dir: String = "src/main/resources/"): List<
 }
 
 fun main() {
-    val day = Day12()
+    val day = Day15()
     val input = readInputLines(day.puzzleInput)
     val testInput = readInputLines(day.puzzleTestInput)
     println()
